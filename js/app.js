@@ -2,7 +2,11 @@
 //es decir que todo el código debe estar englobado en un objeto llamado Calculadora. 
 //Utiliza un método de inicialización que se encargue de ejecutar todas las otras funciones que se deben iniciar 
 //con la ejecución del programa.
-var count=0, selector="", operacion="", num1=0, num2=0;
+var count = 0,
+    selector = "",
+    operacion = "",
+    num1 = 0,
+    num2 = 0;
 var calculadora = {
     init: function () {
 
@@ -27,7 +31,7 @@ var calculadora = {
         var punto = document.getElementById('punto');
         var igual = document.getElementById('igual');
         var mas = document.getElementById('mas');
-        
+
 
         //EVENTOS//
         on.onmousedown = function (e) {
@@ -36,6 +40,20 @@ var calculadora = {
         }
         on.onmouseup = function () {
             calculadora.liberarBoton();
+        }
+        sign.onmousedown = function (e) {
+            calculadora.presionarBoton(e);
+            signo = display.textContent
+            if (display.textContent != "0") {
+                if (display.textContent.charAt(0) != "-") {
+                    display.textContent = "-" + display.textContent;
+                } else {
+                    display.textContent = display.textContent.replace("-", "");
+                }
+            }
+        }
+        sign.onmouseup = function () {
+            calculadora.liberarBoton()
         }
         raiz.onmousedown = function (e) {
             calculadora.presionarBoton(e);
@@ -107,7 +125,7 @@ var calculadora = {
         }
         punto.onmousedown = function (e) {
             calculadora.presionarBoton(e);
-            if (count == 0 && display.textContent.search(".") != "."){
+            if (count == 0 && display.textContent.search(".") != ".") {
                 display.textContent = display.textContent + ".";
             }
 
@@ -115,7 +133,7 @@ var calculadora = {
         }
         punto.onmouseup = function () {
             calculadora.liberarBoton()
-            count=1;
+            count = 1;
         }
 
         igual.onmousedown = function (e) {
@@ -244,7 +262,7 @@ var calculadora = {
     },
     limpiar: function () {
         display.textContent = "0";
-        count=0;
+        count = 0;
     },
     resetear: function () {
         display.textContent = "0";
@@ -252,7 +270,7 @@ var calculadora = {
         num1 = 0;
         num2 = 0;
         signo = 0;
-        count=0;
+        count = 0;
     },
     //4. Para efectos de este proyecto sólo realizaremos las 4 operaciones básicas: 
     //suma, resta, multiplicación y división. El botón que indica raíz cuadrada sólo 
