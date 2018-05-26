@@ -2,7 +2,7 @@
 //es decir que todo el código debe estar englobado en un objeto llamado Calculadora. 
 //Utiliza un método de inicialización que se encargue de ejecutar todas las otras funciones que se deben iniciar 
 //con la ejecución del programa.
-var signo, selector, operacion, num1, num2;
+var count=0, selector="", operacion="", num1=0, num2=0;
 var calculadora = {
     init: function () {
 
@@ -27,6 +27,7 @@ var calculadora = {
         var punto = document.getElementById('punto');
         var igual = document.getElementById('igual');
         var mas = document.getElementById('mas');
+        
 
         //EVENTOS//
         on.onmousedown = function (e) {
@@ -36,58 +37,11 @@ var calculadora = {
         on.onmouseup = function () {
             calculadora.liberarBoton();
         }
-        
         raiz.onmousedown = function (e) {
             calculadora.presionarBoton(e);
             console.log("Funcion no implementada")
         }
         raiz.onmouseup = function () {
-            calculadora.liberarBoton()
-        }
-        mas.onmousedown = function (e) {
-            calculadora.presionarBoton(e);
-            num1 = display.textContent;
-            if (num1.length > 8) {
-                alert("El operador excede los 8 digitos, digite nuevamente");
-                num1 = 0;
-                calculadora.limpiar();
-            } else {
-                operacion = "+";
-                calculadora.limpiar();
-
-            }
-        }
-        mas.onmouseup = function () {
-            calculadora.liberarBoton()
-        }
-        menos.onmousedown = function (e) {
-            calculadora.presionarBoton(e);
-            num1 = display.textContent;
-            if (num1.length > 8) {
-                alert("El operador excede los 8 digitos, digite nuevamente");
-                num1 = 0;
-                calculadora.limpiar();
-            } else {
-                operacion = "-";
-                calculadora.limpiar();
-            }
-        }
-        menos.onmouseup = function () {
-            calculadora.liberarBoton()
-        }
-        por.onmousedown = function (e) {
-            calculadora.presionarBoton(e);
-            num1 = display.textContent;
-            if (num1.length > 8) {
-                alert("El operador excede los 8 digitos, digite nuevamente");
-                num1 = 0;
-                calculadora.limpiar();
-            } else {
-                operacion = "*";
-                calculadora.limpiar();
-            }
-        }
-        por.onmouseup = function () {
             calculadora.liberarBoton()
         }
         dividido.onmousedown = function (e) {
@@ -105,6 +59,65 @@ var calculadora = {
         dividido.onmouseup = function () {
             calculadora.liberarBoton()
         }
+        por.onmousedown = function (e) {
+            calculadora.presionarBoton(e);
+            num1 = display.textContent;
+            if (num1.length > 8) {
+                alert("El operador excede los 8 digitos, digite nuevamente");
+                num1 = 0;
+                calculadora.limpiar();
+            } else {
+                operacion = "*";
+                calculadora.limpiar();
+            }
+        }
+        por.onmouseup = function () {
+            calculadora.liberarBoton()
+        }
+        menos.onmousedown = function (e) {
+            calculadora.presionarBoton(e);
+            num1 = display.textContent;
+            if (num1.length > 8) {
+                alert("El operador excede los 8 digitos, digite nuevamente");
+                num1 = 0;
+                calculadora.limpiar();
+            } else {
+                operacion = "-";
+                calculadora.limpiar();
+            }
+        }
+        menos.onmouseup = function () {
+            calculadora.liberarBoton()
+        }
+        mas.onmousedown = function (e) {
+            calculadora.presionarBoton(e);
+            num1 = display.textContent;
+            if (num1.length > 8) {
+                alert("El operador excede los 8 digitos, digite nuevamente");
+                num1 = 0;
+                calculadora.limpiar();
+            } else {
+                operacion = "+";
+                calculadora.limpiar();
+            }
+
+        }
+        mas.onmouseup = function () {
+            calculadora.liberarBoton()
+        }
+        punto.onmousedown = function (e) {
+            calculadora.presionarBoton(e);
+            if (count == 0 && display.textContent.search(".") != "."){
+                display.textContent = display.textContent + ".";
+            }
+
+
+        }
+        punto.onmouseup = function () {
+            calculadora.liberarBoton()
+            count=1;
+        }
+
         igual.onmousedown = function (e) {
             calculadora.presionarBoton(e);
             num2 = display.textContent;
@@ -231,6 +244,7 @@ var calculadora = {
     },
     limpiar: function () {
         display.textContent = "0";
+        count=0;
     },
     resetear: function () {
         display.textContent = "0";
@@ -238,7 +252,7 @@ var calculadora = {
         num1 = 0;
         num2 = 0;
         signo = 0;
-        selector = "";
+        count=0;
     },
     //4. Para efectos de este proyecto sólo realizaremos las 4 operaciones básicas: 
     //suma, resta, multiplicación y división. El botón que indica raíz cuadrada sólo 
