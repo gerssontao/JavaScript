@@ -41,6 +41,7 @@ var calculadora = {
         on.onmouseup = function () {
             calculadora.liberarBoton();
         }
+        //8. metodo signo
         sign.onmousedown = function (e) {
             calculadora.presionarBoton(e);
             signo = display.textContent
@@ -51,10 +52,11 @@ var calculadora = {
                     display.textContent = display.textContent.replace("-", "");
                 }
             }
-        }
+        }        
         sign.onmouseup = function () {
             calculadora.liberarBoton()
         }
+
         raiz.onmousedown = function (e) {
             calculadora.presionarBoton(e);
             console.log("Funcion no implementada")
@@ -123,14 +125,13 @@ var calculadora = {
         mas.onmouseup = function () {
             calculadora.liberarBoton()
         }
+
+        //9. metodo punto
         punto.onmousedown = function (e) {
             calculadora.presionarBoton(e);
             if (count == 0 && display.textContent.search(".") != ".") {
                 display.textContent = display.textContent + ".";
-            }
-
-
-        }
+            }        }
         punto.onmouseup = function () {
             calculadora.liberarBoton()
             count = 1;
